@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 내부 스타일 시트 */
+        /*
+        h1은 태그 선택자: 이 문서에서 h1 태그 전부를 선택 스타일 적용
+        padding에 2개의 값을 주면 첫번째가 위아래 두번째는 좌우
+        3개면 위 좌우 아래
+        4개면 위 오른 아래 왼(시계방향)
+        margin도 동일
+        * 을 주면 모든 부분에 주는것
+        ex) * {padding: 10px}
+        */
+        h1 { background-color: #222; color: #fff; padding: 10px;}
+        div{ background-color: antiquewhite; margin-bottom: 30px;}
+        div#type-1 {padding: 20px 40px;}
+        div#type-2 {padding: 20px 40px 50px;}
+        div#type-3 {padding: 20px 40px 50px 60px;}
+        div#type-4 {padding: 50px 40px 0 0;}
+    </style>
+</head>
+<body>
+    <h1>stylesheet</h1>
+    <h1>스타일시트</h1>
+    <div id="type-1">1</div>
+    <div id="type-2">22 콩까지마 22 폭풍저그 콩진호가 간다. 22 콩까지마 22 폭풍저그 콩진호가 간다.</div>
+    <div id="type-3">3번에는 총 4개를 적어줄건데 이건 시계방향대로 패딩이 들어감 참고로 margin도 동일함</div>
+    <div id="type-4">4 특정한 곳에 주고 싶다면 top right bottom left 로 주면됨 추가로 0을 주면 아에 제외해버림</div>
+</body>
+</html>

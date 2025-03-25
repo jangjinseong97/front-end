@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/api/cca" method="get">
+        <div>
+            나이: <input type="text" name="age" value="숫자">    
+        </div>
+        <div>
+            이름: <input type="text" name="name">
+        </div>
+        <div>
+            <input type="submit" value="전송">
+            <button type="button">버튼</button>
+            <input type="reset" value="리셋">
+        </div>
+        
+    </form>
+    <hr>
+    <form action="/api/cca" method="post">
+        <div>
+            <span><label for="input-age">나이: </label></span> 
+            <span><input type="text" name="age" value="숫자" id="input-age"></span>
+        </div>
+        <div>
+            <label>이름: <input type="text" name="name"></label>
+        </div>
+        <div>
+            <input type="submit" value="전송">
+            <button type="button">버튼</button>
+            <input type="reset" value="리셋">
+        </div>
+        
+    </form>
+    <hr>
+    <h2>input 종류</h2>
+    <form action="/api/ccc" method="post">
+        <div><input type="button" value="버튼명"></div>
+        <div>
+            <label>스포트 <input type="checkbox" name="sports" value="1"></label>
+            <label>활동 <input type="checkbox" name="sports" value="2"></label>
+            <label>자유시간 <input type="checkbox" name="sports" value="3"></label>
+        </div>
+        <div> <input type="color" name="seat_color"></div>
+        <div> <input type="date" name="stare_date" ></div>
+        <div> <input type="datetime-local" id="id_start_datetime" name="stare_date"></div>
+        <div> <input type="email" name="email"> </div>
+        <div> <input type="file" name="all"></div>
+        <div> <input type="file" name="pic" accept="imgae/*"></div>
+        <div> <input type="hidden" name="hidden" value="12"></div>
+        <div> <input type="image" src="https://cdn.animaltoc.com/news/photo/202410/1409_6515_3838.jpg"></div>
+        <div> <input type="month" name="start_mom"></div>
+        <div> <input type="number" name="age"></div>
+        <div> <input type="password" name="pw"></div>
+        <div>
+            <div>학년</div>
+            <label>1학년 <input type="radio" name="grade" value="1" checked></label>
+            <label>2학년 <input type="radio" name="grade" value="2"></label>
+            <label>3학년 <input type="radio" name="grade" value="3"></label>
+            <label>4학년 <input type="radio" name="grade2" value="4"></label>
+        </div>
+        <div>
+            <select name="blood_type">
+                <option value="01">A형</option>
+                <option>B형</option>
+                <option>AB형</option>
+                <option>O형</option>
+            </select>
+        </div>
+
+        <div>
+            <input type="text" list="id_mbti"> <br>
+            <datalist id="id_mbti">
+                <option>INTP</option>
+                <option>INTF</option>
+                <option>ISTF</option>
+                <option>ISTP</option>
+        </div>
+
+        <div> <input type="submit" value="전송"></div>
+    </form>
+    <script>
+        function make2digit(item){
+            return String(item).padStart(2,'0');
+        }
+        window.addEventListener('load', function() {
+            console.log('load')
+            const $idStartDatetime = document.querySelector('#id_start_datetime')
+            if($idStartDatetime){
+                const now = new Date();
+                const year = make2digit(now.getFullYear());
+                const mon = make2digit(now.getMonth() + 1); // js는 달력이 0~11월
+                const day = make2digit(now.getDate());
+                const hour = make2digit(now.getHours());
+                const min = now.getMinutes();
+                console.log(year, mon, day, hour, min)
+                $idStartDatetime.value = `${year}-${mon}-${day} ${hour}:${make2digit(min)}`
+            } //null 이면 false 처리해줌
+        })
+        // 로딩이 다되었다면 작업하기 위해서
+        window.addEventListener('load', () => {
+            console.log('load')
+        })
+    </script>
+</body>
+</html>
