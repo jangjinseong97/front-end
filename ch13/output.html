@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div-alert">alert</div>
+    <div id="div-prompt">prompt</div>
+    <div id="div-console">console</div>
+    <div id="div-confirm">confirm</div>
+
+    <script>
+        const $divAlert = document.querySelector('#div-alert');
+        const $divPrompt = document.querySelector('#div-prompt');
+        const $divConsole = document.querySelector('#div-console');
+        const $divConfirm = document.querySelector('#div-confirm');
+
+        $divAlert.addEventListener('click',() => {
+            alert('alert 창은 확인누르면 알아서 꺼짐')
+        });
+        $divConsole.addEventListener('click',() =>{
+            console.log('봤잖아 콘솔로는 로그 보는거')
+            console.error('봤잖아 콘솔로는 로그 보는거')
+            console.info('봤잖아 콘솔로는 로그 보는거')
+            console.warn('봤잖아 콘솔로는 로그 보는거')
+        })
+        $divPrompt.addEventListener('click',() =>{
+            const data = prompt('데이터 입력칸')
+            console.log(`data: ${data}`)
+        })
+        $divConfirm.addEventListener('click', () =>{
+            if(confirm('예 누르면 true 아니요 false')){
+                console.log('니가 예 누른거임 후회 ㄴ')
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #page > span:not(:last-child) {margin-right:4px;}
+        #page>span{cursor: pointer;}
+        .selected { font-size: 1.2em; color: aqua;}
+    </style>
+</head>
+<body>
+    <div id="page">
+
+    </div>
+    <script>
+        const $page = document.querySelector('#page');
+
+        const pageValue = 10;
+        const pageNumberArr = [];
+        for(let i=1; i<=pageValue; i++){
+            const span = document.createElement('span'); // <span></span> span 태그 제작
+            if(i === 1){
+                span.classList.add('selected')
+            }
+            //span.classLis.add('selected')
+            pageNumberArr.push(span)
+            span.addEventListener('click', (e)=>{
+                // e.target.style.textDecoration = 'line-through';
+                
+                pageNumberArr.forEach(item => {
+                    item.classList.toggle('selected', item.innerText == i);
+                });
+            });
+            span.innerText = i; // 제작한 span에 값 주입
+            $page.appendChild(span); // 제작한 span page id가 있는곳에 주입 
+            // append 문자와 객체, appendChild 객체만
+        }
+
+    </script>
+</body>
+</html>

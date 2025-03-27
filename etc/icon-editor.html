@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{ border-collapse: collapse; margin-top: 5px;}
+        td{ border: 1px solid gray; width:15px; height: 15px;}
+    </style>
+</head>
+<body>
+    <script>    
+        window.addEventListener('load', () =>{
+            createIconEditor(document.body, 16,16);
+        });
+        function createIconEditor(parent, nx,ny){
+            const $color = elt('input', {type:'color'});
+            parent.appendChild($color);
+            const clear = elt('input', {type: 'button', value: '모두 삭제'});
+            parent.appendChild(clear)
+
+            //table
+            const table = elt('table')
+            const cells = []; // td 요소를 저장하는 배열
+            for(let i=0; i<ny; i++){
+                const tr = elt('tr');
+                table.appendChild(tr);
+                for(let j=0; j<nx; j++){
+                    const td = elt('td');
+                    td.addEventListener('click', e =>{
+                        e.target.style.backgroundColor = $color.value;
+                    });
+                    cells.push(td);
+                    tr.appendChild(td);
+                }
+            }
+            parent.appendChild(table);
+        }
+        // name 태그명
+        // attr 속성 객체
+        function elt(name, attrs){
+            const node = document.createElement(name);
+            // <input> 태그생성
+            if(attrs){
+                // true {type:'color'} 가 있음
+                for(const attr in attrs){
+                    // {type:'color'} 1번 돔
+                    // in 연산자 attrs 객체의 속성마다 for문을 돌려줌
+                    if(attrs.hasOwnProperty(attr)){
+     // js는 객체에 속성을 유동적으로 추가가 가능해서 원본에 있는 객체와 같은지 비교하는 메소드
+     // 즉 원본에 있던것만 넣는 것
+                        node.setAttribute(attr, attrs[attr]);
+                        // <input> 태그에 type:color 넣어줌 >> <input type:color>
+                        // node['${attr}'] = attrs[attr]; 동일함
+                    }
+                }
+            }
+            for(let i=2;i<arguments.length; i++){
+                const child = arguments[i];
+                if(typeof child ==='String'){
+                    child = document.createTextNode(child);
+                }
+                // 문자면 string 타입으로
+                node.appendChild(child);
+                // 그 외는 객체로 참고로 이 객체의 이동은 실제로 위치를 옮겨버림
+            
+            }
+            return node;
+        }
+    </script>
+</body>
+</html>
