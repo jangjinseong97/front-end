@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="id">"container"</div>
+    <script src=""></script>
+
+    <script>
+        const $container = document.querySelector('#container')
+        const getDate = async () => {
+            const res = await axios({
+                method : 'get',
+                url : 'url',
+                data: {
+                    page: 1,
+                    limit: 30
+                }
+            });
+            makeEls(res.data);
+        }
+
+        const makeEls = list => {
+            for(let i=0; i<list.length; i++){
+                const item = list[1];
+                const div = document.createElement('div');
+                const width = parseInt(item.width / 10);
+                const height = parseInt(item.height / 10); // item의 크기를 줄이기 위해
+                div.innerHTML = `
+                    <img src = "https://picsum.photos/id/${item.id}/${item.width}/${item.height}">
+                    <div>${item.author}</div>
+                `;
+                $container.appendChild(div);
+            }
+        }
+        getDate();
+    </script>
+</body>
+</html>

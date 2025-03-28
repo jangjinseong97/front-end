@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [10,20,30];
+        arr.push(40);
+        const arr2 = arr.map(item => item *2);
+        
+        function db(item){
+            console.log(`db : ${item}`);
+        }
+        arr.forEach(db);
+
+
+        const myArr = {
+            0: 10, 1:20, 2:30, length: 3, 'push': function(val){
+                this[this.length] =val;
+                this.length++;
+            }, 'forEach' : function(callback){
+                for(let i=0; i<this.length ; i++){
+                    callback(this[i]); // callback가 받은것이므로 거기서의 i번째 방을 
+                }
+            }, 'map' : function(item){
+                console.log('아이템값')
+                console.log(typeof(item))
+                console.log(`${item}`)
+                console.log('아이템값')
+                const aa = {
+                    length:0, 'push': this.push, 'forEach': this.forEach, 'map': this.map
+                }
+                k=0;
+                for(let i=0; i<this.length;i++){
+                    //aa[i]=this[i]*2
+                    // const res = item(this[i])
+                    aa.push(item(this[i]))
+                    // aa.push(item(this[i],i,this))
+                }
+                
+                return aa;
+
+                // length 추가작업 필요>> 없음 push로 인해서 자동으로 ++이됨(length만큼)
+            }
+        }
+        myArr.push(40);
+        myArr.forEach(db);
+        console.log(myArr.length)
+        const myArr2 = myArr.map(item => {return item *3})
+        const myArr3 = myArr2.map(item => {return item})
+        myArr3.push(50);
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [10,20,30];
+        arr.push(40);
+        const arr2 = arr.map(item => item *2);
+        
+        function db(item){
+            console.log(`db : ${item}`);
+        }
+        arr.forEach(db);
+
+
+        const myArr = {
+            0: 10, 1:20, 2:30, length: 3, 'push': function(val){
+                this[this.length] =val;
+                this.length++;
+            }, 'forEach' : function(callback){
+                for(let i=0; i<this.length ; i++){
+                    callback(this[i]); // callback가 받은것이므로 거기서의 i번째 방을 
+                }
+            }, 'map' : function(item){
+                const aa = myArr // 스코프 이슈
+                for(let i=0; i<this.length;i++){
+                    aa[i]=aa[i]*2
+                    console.log(`${aa[i]}`)    
+                }
+                console.log(`${aa}`)
+                return aa;
+            }
+        }
+        myArr.push(40);
+        myArr.forEach(db);
+        console.log(myArr.length)
+        const myArr2 = myArr.map(item => {return item *2})
+
+    </script>
+</body>
+</html>

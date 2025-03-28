@@ -15,11 +15,26 @@
         window.addEventListener('load', () =>{
             createIconEditor(document.body, 16,16);
         });
+        function hexToRgb(hex) {
+                hex = hex.replace(/^#/, ""); // # 제거
+                if (hex.length === 3) {
+                    hex = hex.split("").map(c => c + c).join(""); // 3자리 hex를 6자리로 변환
+                }
+                let r = parseInt(hex.substring(0, 2), 16);
+                let g = parseInt(hex.substring(2, 4), 16);
+                let b = parseInt(hex.substring(4, 6), 16);
+                return `rgb(${r}, ${g}, ${b})`;
+            }
+
         function createIconEditor(parent, nx,ny){
             const $color = elt('input', {type:'color'});
             parent.appendChild($color);
-            const clear = elt('input', {type: 'button', value: '모두 삭제'});
-            parent.appendChild(clear)
+
+            const $clear = elt('input', {type: 'button', value: '모두 삭제'});
+            $clear.addEventListener('click', () =>{
+                cells.forEach(item => item.style.backgroundColor = '#fff');
+            });
+            parent.appendChild($clear)
 
             //table
             const table = elt('table')
@@ -30,7 +45,18 @@
                 for(let j=0; j<nx; j++){
                     const td = elt('td');
                     td.addEventListener('click', e =>{
-                        e.target.style.backgroundColor = $color.value;
+                        console.log($color.value)// # xxxxxx 값
+                        console.log(hexToRgb($color.value))// # xxxxxx 을 rgb로 변환
+                        console.log(e.target.style.backgroundColor) // rgb값 + 배경에 있던 색 이거 끌어서 넣으면 됨
+                        
+                        if(e.target.style.backgroundColor === '' || e.target.style.backgroundColor == 'rgb(255,255,255)'){
+                            e.target.style.backgroundColor = $color.value;
+                        } else if(e.target.style.backgroundColor===hexToRgb($color.value)){
+                            e.target.style.backgroundColor = '';
+                        } else{
+                            e.target.style.backgroundColor = $color.value;
+                        }
+                    
                     });
                     cells.push(td);
                     tr.appendChild(td);
