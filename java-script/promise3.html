@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function increseAndPrint(n){
+            return new Promise(function(resolve){
+                setTimeout(function(){
+                    const increased = n + 1;
+                    console.log(`increased: ${increased}`)
+                    resolve(increased);
+                }, 1000);
+            })
+        }
+        // increseAndPrint(0).then(function(data){
+        //     // 0을 넣으면 promise로 인해 resolve에 0이 들어감
+        //     // then으로 resolve의 값을 받음 (data)
+        //     console.log(`data" ${data}`);
+        //     return increseAndPrint(data); 
+        //     // 위에서 받은 data로 다시 increseAndPrint의 객체 주소값을 리턴
+        // }).then(function(data2){
+        //     // 위에서 리턴 받은것(주소값)에 대해 then
+        //     console.log(`data2" ${data2}`);
+        //     return increseAndPrint(data2);
+        //     // 다시 여기까진 객체주소값 >> then 작성 가능
+        //     // 콜백 대신에 사용하는것 계산 후 리턴받고 계산하고 리턴받고(시간 텀을 두고)
+        // })
+
+        // increseAndPrint(0)
+        // .then(data => increseAndPrint(data))
+        // .then(data => increseAndPrint(data))
+        // .then(data => increseAndPrint(data))
+        // .then(data => increseAndPrint(data))
+        // .then(data => increseAndPrint(data))
+
+        increseAndPrint(0)
+        .then(data => data+1)
+        .then(data => data+1)
+        .then(data => {
+            return new Promise(function(resolve){
+                setTimeout(function(){
+                    resolve(data+1);
+                },1000)
+
+            })
+        })
+        .then(data => data+1)
+        .then(data => console.log(data))
+
+        
+
+
+    </script>
+</body>
+</html>

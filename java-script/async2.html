@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// A > B > C > D
+        // 작업 제외 나머지 작업은 선행작업의 결과값이 중요
+        // A쪽으로 갈수록 작업이 느린것으로 살펴보자(이해를 위해)
+        let a2 = 0;
+        setTimeout(function(){
+            a2=100;
+            let b2 = 1;
+          setTimeout(function(){
+                b2=2;
+                let c2 = 0;
+                setTimeout(function(){
+                c2 = b2 * 5
+                },777);
+            },888);
+        },999);
+
+        
+        console.log(`c2: ${c2}`)
+    </script>
+</body>
+</html>

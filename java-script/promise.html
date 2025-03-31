@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const p1 = new Promise( function(resolve, reject) {
+            const isSuccess = false;
+            setTimeout(function() {
+                if(isSuccess){
+                    resolve(100);
+                } else {
+                    reject('에러발생')
+                }
+
+            },100)
+        });
+
+        p1.then(function(data){
+            console.log(`data:${data}`);
+        }).catch( function(err) {
+            console.log(`err:${err}`);
+        });
+        // then 으론 resolve 의 데이터를 catch로는 reject의 데이터를
+        console.log('------------------')
+
+        function cb(resolve, reject){
+            resolve(999);
+        }
+
+        const p2 = new Promise(cb)
+            p2.then(function(data2){
+                console.log(`data2: ${data2}`);
+            })
+            
+        p2.catch( function(err2) {
+            console.log(`err2: ${err2}`);
+        });
+        
+    </script>
+    
+
+</body>
+</html>

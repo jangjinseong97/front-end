@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [10,20,30];
+        arr.push(40);
+        
+        const sum = arr.reduce(function(acc, cur){
+            return acc + cur;
+        })
+        console.log(`sum : ${sum}`)
+
+        const multiply = arr.reduce(function(acc,cur){
+            return acc * cur;
+        })
+        console.log(`mul: ${multiply}`)
+
+
+        const myArr = {
+            0: 10, 1:20, 2:30, length: 3, push: function(val){
+                this[this.length] =val;
+                this.length++;
+            },
+            reduce: function(rd){
+                // console.log(this[0])
+                // console.log(this[1])
+                // console.log(this[2])
+                // console.log(this[3])
+
+                let  acc = rd(this[0], this[1]);
+                // console.log(acc)
+                let  i=2
+                for(; i<this.length ; i++){
+                    console.log(this[i])
+                    console.log(acc)
+                    acc = rd(acc,this[i]); // let은 안나옴 const는 나옴 
+                    console.log(acc)
+
+                }
+                return acc;
+                
+    
+            }
+        }
+        myArr.push(40);
+        console.log(myArr.length   )
+
+
+        const mySum = myArr.reduce(function(acc, cur){
+            return acc + cur;
+        })
+        
+        console.log(`mySum: ${mySum}`)
+    </script>
+</body>
+</html>
